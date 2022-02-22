@@ -23,7 +23,7 @@ router.post('/', async (req, res, next) => {
     'to' : '917486835085',
     'type' : 'text',
     'text' : {
-      "body": req.body.messages
+      "body": JSON.stringify(req.body.messages)
         },
   });
 
