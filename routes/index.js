@@ -14,7 +14,7 @@ router.post('/', async (req, res, next) => {
   console.log("route / ",JSON.stringify(req.body))
   const apiService =  new ApiRequestService();
   const response = await apiService.postApi('v1/messages',{ 
-    'D360-API-KEY' : 'C0Wl7Q_sandbox'
+    'D360-API-KEY' : process.env.myKey
   },{
     'recipient_type' : 'individual',
     'to' : '919409419763',
