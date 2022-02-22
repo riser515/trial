@@ -9,11 +9,7 @@ const ApiRequestService = require('./../services/api.service');
 router.get('/', (req, res)=>{
   console.log("route / ",JSON.stringify(req.body));
   res.send("Works");
-});
 
-router.post('/', async (req, res, next) => {
-  console.log("route / ",JSON.stringify(req.body));
- 
   const apiService =  new ApiRequestService();
   if(req.body && req.body.messages){
   const user_input = await apiService.getApi('v1/messages', {
@@ -21,7 +17,15 @@ router.post('/', async (req, res, next) => {
   }, {})
 
   console.log(user_input);
+  }
+});
 
+router.post('/', async (req, res, next) => {
+  console.log("route / ",JSON.stringify(req.body));
+ 
+  const apiService =  new ApiRequestService();
+  if(req.body && req.body.messages){
+  
   const response = await apiService.postApi('v1/messages',{ 
     'D360-API-KEY' : process.env.Sandbox_API
   },{
