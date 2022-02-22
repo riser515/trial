@@ -6,7 +6,7 @@ const ApiRequestService = require('./../services/api.service');
 
 
 /* GET home page. */
-router.get('/', (req, res)=>{
+router.get('/', async (req, res)=>{
   console.log("route / ",JSON.stringify(req.body));
   res.send("Works");
 
