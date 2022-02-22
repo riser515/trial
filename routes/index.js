@@ -4,36 +4,23 @@ var router = express.Router();
 const ApiRequestService = require('./../services/api.service');
 // import { ApiRequestService } from './../services/api.service';
 
-
 /* GET home page. */
-router.get('/', (req, res)=>{
-  console.log("route / ",JSON.stringify(req.body));
-  res.send("Works");
-});
-
 router.post('/', async (req, res, next) => {
-  console.log("route / ",JSON.stringify(req.body));
- 
+  console.log("route / ",JSON.stringify(req.body))
   const apiService =  new ApiRequestService();
-  if(req.body && req.body.messages){
   const response = await apiService.postApi('v1/messages',{ 
-    'D360-API-KEY' : process.env.myKey
+    'D360-API-KEY' : 'C0Wl7Q_sandbox'
   },{
     'recipient_type' : 'individual',
-    'to' : '917486835085',
+    'to' : '919409419763',
     'type' : 'text',
     'text' : {
-      "body": "Hey there!"
-        },
-  });
-
-      res.render('index', { title: 'Express' });
-
-      console.log('response',response);
-    } 
-    else if(req.body && req.body.statuses){
-      console.log('status', req.body.statuses[0].status);
-    }
+      "body": "Hello, dear customer!"
+    },
+  })
+  console.log('response',response);
+  
+  // res.render('index', { title: 'Express' });
 });
 
 module.exports = router;
