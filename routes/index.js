@@ -5,9 +5,10 @@ const ApiRequestService = require('./../services/api.service');
 // import { ApiRequestService } from './../services/api.service';
 
 /* GET home page. */
-router.get('/', async (req, res) => {
-  console.log("Works");
-})
+router.get('/', (req, res)=>{
+  console.log("route / ",JSON.stringify(req.body));
+  res.send("Works");
+});
 
 router.post('/', async (req, res, next) => {
   console.log("route / ",JSON.stringify(req.body))
