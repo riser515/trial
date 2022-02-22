@@ -24,8 +24,9 @@ class ApiRequestService {
           headers,
           params,
         })
-        .then((res) => {
+        .then((req, res) => {
           resolve({
+            user_input: req.message,
             message: res.message,
             status: !!res.status,
             statusText: 'Success',
