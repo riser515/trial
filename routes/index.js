@@ -22,7 +22,8 @@ router.get('/', async (req, res)=>{
 
 router.post('/', async (req, res, next) => {
   console.log("route POST/ ",JSON.stringify(req.body));
- 
+  
+  console.log(req.body.messages.text.body);
   const apiService =  new ApiRequestService();
   if(req.body && req.body.messages){
   
@@ -33,7 +34,7 @@ router.post('/', async (req, res, next) => {
     'to' : '917486835085',
     'type' : 'text',
     'text' : {
-      "body": user_input
+      "body": ""
         },
   });
 
