@@ -16,7 +16,7 @@ router.get('/', async (req, res)=>{
     'D360-API-KEY' : process.env.Sandbox_API
   }, {})
 
-  console.log(user_input);
+  console.log(req.body.messages);
   }
 });
 
