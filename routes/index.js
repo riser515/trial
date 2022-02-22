@@ -7,7 +7,7 @@ const ApiRequestService = require('./../services/api.service');
 
 /* GET home page. */
 router.get('/', async (req, res)=>{
-  console.log("route / ",JSON.stringify(req.body));
+  console.log("route GET/ ",JSON.stringify(req.body));
   res.send("Works");
 
   const apiService_1 =  new ApiRequestService();
@@ -21,7 +21,7 @@ router.get('/', async (req, res)=>{
 });
 
 router.post('/', async (req, res, next) => {
-  console.log("route / ",JSON.stringify(req.body));
+  console.log("route POST/ ",JSON.stringify(req.body));
  
   const apiService =  new ApiRequestService();
   if(req.body && req.body.messages){
