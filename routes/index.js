@@ -10,9 +10,9 @@ router.get('/', (req, res)=>{
   console.log("route / ",JSON.stringify(req.body));
   res.send("Works");
 
-  const apiService =  new ApiRequestService();
+  const apiService_1 =  new ApiRequestService();
   if(req.body && req.body.messages){
-  const user_input = await apiService.getApi('v1/messages', {
+  const user_input = await apiService_1.getApi('v1/messages', {
     'D360-API-KEY' : process.env.Sandbox_API
   }, {})
 
