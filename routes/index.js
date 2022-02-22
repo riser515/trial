@@ -22,7 +22,7 @@ router.get('/', async (req, res)=>{
 
 router.post('/', async (req, res, next) => {
   console.log("route POST/ ",JSON.stringify(req.body));
-  
+  console.log(req.body.messages[0].text.body);
   // console.log(req.body);
   const apiService =  new ApiRequestService();
   if(req.body && req.body.messages){
