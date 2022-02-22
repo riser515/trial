@@ -26,7 +26,7 @@ class ApiRequestService {
         })
         .then((req, res) => {
           resolve({
-            user_input: req.message,
+            // user_input: req.message,
             message: res.message,
             status: !!res.status,
             statusText: 'Success',
