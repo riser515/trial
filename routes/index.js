@@ -25,7 +25,7 @@ router.post('/', async (req, res, next) => {
   // console.log(req.body);
   const apiService =  new ApiRequestService();
   if(req.body && req.body.messages){
-    console.log(req.body.messages[0].text.body);
+    const msg = req.body.messages[0].text.body;
   
   const response = await apiService.postApi('v1/messages',{ 
     'D360-API-KEY' : process.env.Sandbox_API
@@ -34,7 +34,7 @@ router.post('/', async (req, res, next) => {
     'to' : '917486835085',
     'type' : 'text',
     'text' : {
-      "body": "hi"
+      "body": `${msg}`
         },
   });
 
