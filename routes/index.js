@@ -17,7 +17,7 @@ router.post('/', async (req, res, next) => {
     'D360-API-KEY' : process.env.myKey
   },{
     'recipient_type' : 'individual',
-    'to' : '919409419763',
+    'to' : '917486835085',
     'type' : 'text',
     'text' : {
       "body": "Hello, dear customer!"
