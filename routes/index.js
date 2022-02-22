@@ -16,6 +16,12 @@ router.post('/', async (req, res, next) => {
  
   const apiService =  new ApiRequestService();
   if(req.body && req.body.messages){
+  const user_input = await apiService.getApi('v1/messages', {
+    'D360-API-KEY' : process.env.Sandbox_API
+  }, {})
+
+  console.log(user_input);
+  
   const response = await apiService.postApi('v1/messages',{ 
     'D360-API-KEY' : process.env.Sandbox_API
   },{
