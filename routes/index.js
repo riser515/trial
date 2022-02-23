@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
     const msg = req.body.messages[0].text.body;
   
     const reply = executeQueries('pizzabot-a9bd', '1', [msg], 'en');
-    console.log(reply);
+    console.log("Reply: ", reply);
 
   const response = await apiService.postApi('v1/messages',{ 
     'D360-API-KEY' : process.env.Sandbox_API
@@ -98,6 +98,7 @@ async function executeQueries(projectId, sessionId, queries, languageCode) {
       );
       // Use the context from this response for next queries
       context = intentResponse.queryResult.outputContexts;
+      return intentResponse.queryResult.fulfillmentText;
     } catch (error) {
       console.log(error);
     }
