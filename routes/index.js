@@ -36,7 +36,7 @@ router.post('/', async (req, res, next) => {
 
       res.render('index', { title: 'Express' });
 
-      // console.log('response',response);
+      console.log('response',response);
     } 
     else if(req.body && req.body.statuses){
       console.log('status', req.body.statuses[0].status);
