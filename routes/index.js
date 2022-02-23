@@ -21,7 +21,7 @@ router.post('/', async (req, res, next) => {
   if(req.body && req.body.messages){
     const msg = req.body.messages[0].text.body;
   
-    const reply = executeQueries('pizzabot-a9bd', '1', msg, 'en');
+    const reply = executeQueries('pizzabot-a9bd', '1', [msg], 'en');
 
   const response = await apiService.postApi('v1/messages',{ 
     'D360-API-KEY' : process.env.Sandbox_API
