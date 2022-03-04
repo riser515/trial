@@ -1,47 +1,48 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 // import async from 'hbs/lib/async';
-const ApiRequestService = require('./../services/api.service');
+const ApiRequestService = require("./../services/api.service");
 // import { ApiRequestService } from './../services/api.service';
-const dialogflow = require('@google-cloud/dialogflow');
+const dialogflow = require("@google-cloud/dialogflow");
 const sessionClient = new dialogflow.SessionsClient();
 
-
-
 /* GET home page. */
-router.get('/', async (req, res)=>{
-  console.log("route GET/ ",JSON.stringify(req.body));
+router.get("/", async (req, res) => {
+  console.log("route GET/ ", JSON.stringify(req.body));
   res.send("Works");
 });
 
-router.post('/', async (req, res, next) => {
-  console.log("route POST/ ",JSON.stringify(req.body));
+router.post("/", async (req, res, next) => {
+  console.log("route POST/ ", JSON.stringify(req.body));
   // console.log(req.body);
-  const apiService =  new ApiRequestService();
-  if(req.body && req.body.messages){
+  const apiService = new ApiRequestService();
+  if (req.body && req.body.messages) {
     const msg = req.body.messages[0].text.body;
-  
-    const reply = await executeQueries('pizzabot-a9bd', '1', [msg], 'en');
+
+    const reply = await executeQueries("pizzabot-a9bd", "1", [msg], "en");
     console.log("Reply: ", reply);
 
-  const response = await apiService.postApi('v1/messages',{ 
-    'D360-API-KEY' : process.env.Sandbox_API
-  },{
-    'recipient_type' : 'individual',
-    'to' : '917486835085',
-    'type' : 'text',
-    'text' : {
-      "body": `${reply}`
+    const response = await apiService.postApi(
+      "v1/messages",
+      {
+        "D360-API-KEY": process.env.Sandbox_API,
+      },
+      {
+        recipient_type: "individual",
+        to: "917486835085",
+        type: "text",
+        text: {
+          body: `${reply}`,
         },
-  });
+      }
+    );
 
-      res.render('index', { title: 'Express' });
+    res.render("index", { title: "Express" });
 
-      console.log('response',response);
-    } 
-    else if(req.body && req.body.statuses){
-      console.log('status', req.body.statuses[0].status);
-    }
+    console.log("response", response);
+  } else if (req.body && req.body.statuses) {
+    console.log("status", req.body.statuses[0].status);
+  }
 });
 
 async function detectIntent(
@@ -75,6 +76,7 @@ async function detectIntent(
   }
 
   const responses = await sessionClient.detectIntent(request);
+  console.log(JSON.stringify(responses));
   return responses[0];
 }
 
@@ -92,7 +94,7 @@ async function executeQueries(projectId, sessionId, queries, languageCode) {
         context,
         languageCode
       );
-      console.log('Detected intent');
+      console.log("Detected intent");
       console.log(
         `Fulfillment Text: ${intentResponse.queryResult.fulfillmentText}`
       );
